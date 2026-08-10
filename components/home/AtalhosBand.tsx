@@ -41,7 +41,7 @@ export function AtalhosBand() {
 
   return (
     <section id="atalhos" ref={sectionRef} style={{ background: "var(--uni-700)", padding: "72px 0" }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
         <div className="uni-atalhos">
           {ATALHOS.map((a, i) => (
             <div key={a.title} className="uni-atalho" style={{ position: "relative" }}>

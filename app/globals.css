@@ -207,6 +207,12 @@ button {
 .bd-btn:active { transform: scale(var(--press-scale)); }
 .bd-btn:focus-visible { outline: none; box-shadow: var(--ring-focus); }
 .bd-btn[disabled] { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+/* On narrow phones the long WhatsApp label is wider than the viewport. Let it
+   wrap onto a second line instead of bleeding past the edge. */
+@media (max-width: 560px) {
+  .bd-btn { white-space: normal; max-width: 100%; text-align: center; }
+  .bd-btn--lg { padding: 15px 24px; font-size: 15px; }
+}
 
 /* ==========================================================================
    Cards
@@ -277,6 +283,12 @@ button {
   height: 64px;
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-float);
+}
+/* A 64px bubble eats a lot of a 375px screen and sits on top of the content
+   behind it, so it shrinks (and tucks in) on phones. */
+@media (max-width: 560px) {
+  .bd-fab { width: 56px; height: 56px; right: 16px !important; bottom: 16px !important; }
+  .bd-fab img { width: 26px !important; height: 26px !important; }
 }
 
 /* ==========================================================================
@@ -357,6 +369,7 @@ button {
 .uni-h1 { font-size: clamp(26px, 2.9vw, 46px); }
 .uni-display { font-size: clamp(28px, 3.6vw, var(--uni-display-size, 50px)); }
 
+
 /* ==========================================================================
    Photo / data placeholders
    ========================================================================== */
@@ -421,7 +434,10 @@ button {
 .uni-foot-inline { color: var(--uni-400); text-decoration: underline; text-underline-offset: 3px; }
 .uni-foot-inline:hover { color: #fff; }
 @media (max-width: 1100px) { .uni-footer-cols { grid-template-columns: 1fr 1fr; gap: 48px; } }
-@media (max-width: 700px) { .uni-footer-cols { grid-template-columns: 1fr; gap: 44px; } .uni-foot-esp { grid-template-columns: 1fr; } }
+@media (max-width: 700px) {
+  .uni-footer-cols { grid-template-columns: 1fr; gap: 44px; }
+  .uni-foot-esp { grid-template-columns: 1fr; }
+}
 
 /* ==========================================================================
    Unidade / localização
@@ -468,3 +484,21 @@ button {
    ========================================================================== */
 .js-reveal { opacity: 0; }
 .js-reveal-group > * { opacity: 0; }
+
+/* ==========================================================================
+   Touch targets — keep this block last
+   Phone and tablet widths get standalone links and icon buttons padded out to
+   the ~44px guideline. These rules share specificity with the base rules they
+   override, so they only win by coming after them: keep this block at the end
+   of the file.
+
+   Inline links inside a sentence are deliberately left alone — padding those
+   would break the paragraph's line rhythm.
+   ========================================================================== */
+@media (max-width: 900px) {
+  .uni-pagehero__crumb a { display: inline-block; padding: 9px 0; }
+  /* Footer links are already flex/grid items, so they blockify on their own —
+     display:inline-block here would break the specialty grid's columns. */
+  .bd-flink { padding: 6px 0; }
+  .uni-copy { width: 44px; height: 44px; }
+}

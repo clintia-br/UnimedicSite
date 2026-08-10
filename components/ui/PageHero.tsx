@@ -42,7 +42,7 @@ export function PageHero({ breadcrumb, title, subtitle, cta, photo, minHeight = 
           position: "relative",
           maxWidth: 1280,
           margin: "0 auto",
-          padding: "80px 40px 64px",
+          padding: "clamp(56px, 8vw, 80px) clamp(20px, 5vw, 40px) clamp(48px, 6vw, 64px)",
           textAlign: align,
         }}
       >

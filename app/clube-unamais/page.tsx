@@ -52,7 +52,7 @@ export default function ClubeUnamaisPage() {
       </Band>
 
       <section style={{ background: "var(--gradient-teal)", padding: "96px 0" }}>
-        <Reveal as="div" style={{ maxWidth: 780, margin: "0 auto", padding: "0 40px", textAlign: "center" }}>
+        <Reveal as="div" style={{ maxWidth: 780, margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", textAlign: "center" }}>
           <h2 style={{ margin: 0, fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 44, lineHeight: 1.1, letterSpacing: "-0.02em", color: "#fff", textWrap: "pretty" }}>
             Pronto para cuidar da família gastando menos?
           </h2>

@@ -29,7 +29,7 @@ export function ClubeHero() {
         <HeroPhotoNotice label="fachada da Unimedic" />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(4,41,31,.35) 0%, rgba(4,41,31,.6) 100%)" }} />
       </div>
-      <div style={{ position: "relative", maxWidth: 980, margin: "0 auto", padding: "104px 40px 88px", textAlign: "center" }}>
+      <div style={{ position: "relative", maxWidth: 980, margin: "0 auto", padding: "clamp(64px, 10vw, 104px) clamp(20px, 5vw, 40px) clamp(56px, 8vw, 88px)", textAlign: "center" }}>
         <div
           className="uni-clube__eyebrow"
           style={{ fontFamily: "var(--font-body)", fontSize: 13, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--uni-400)" }}
