@@ -294,8 +294,54 @@ button {
 /* ==========================================================================
    Header
    ========================================================================== */
-.uni-nav { display: flex; align-items: center; gap: clamp(14px, 2vw, 34px); flex: 0 1 auto; justify-content: center; margin: 0 auto; }
-.uni-nav .bd-navlink { font-size: clamp(14px, 1.5vw, 16px); }
+/* Logo left, nav left-aligned right after it, action pills right — the base
+   brand's header arrangement, in the Unimedic palette. */
+.uni-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.6vw, 44px);
+  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(10px);
+  transition: background var(--dur-base) var(--ease-standard), box-shadow var(--dur-base) var(--ease-standard);
+}
+.uni-header__logo { flex: 0 0 auto; display: flex; }
+
+.uni-nav { display: flex; align-items: center; gap: clamp(14px, 1.8vw, 30px); flex: 0 1 auto; }
+.uni-nav .bd-navlink { font-size: clamp(14px, 1.4vw, 16px); }
+
+.uni-header__cta { display: flex; align-items: center; gap: 10px; margin-left: auto; flex: 0 0 auto; }
+.uni-header__pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px clamp(16px, 1.6vw, 24px);
+  /* Keeps the pills at a comfortable tap size even where the clamped font
+     size shrinks them (the bar still shows pills down to 720px). */
+  min-height: 44px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(14px, 1.3vw, 15px);
+  line-height: 1.2;
+  white-space: nowrap;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  transition: var(--transition-base);
+}
+/* The reference's bright accent pills would land near 2.5:1 against white in
+   this green ramp, so the second action is an outline pill instead of a second
+   fill — uni-700 clears 7:1 either way. */
+.uni-header__pill--solid { background: var(--uni-700); color: #fff; }
+.uni-header__pill--solid:hover { background: var(--uni-800); color: #fff; transform: var(--hover-lift); }
+.uni-header__pill--ghost { background: #fff; border-color: var(--uni-300); color: var(--uni-700); }
+.uni-header__pill--ghost:hover { background: var(--uni-50); border-color: var(--uni-500); color: var(--uni-800); transform: var(--hover-lift); }
+.uni-header__pill:active { transform: scale(var(--press-scale)); }
+.uni-header__pill:focus-visible { outline: none; box-shadow: var(--ring-focus); }
+
 .uni-burger {
   display: none;
   align-items: center;
@@ -325,9 +371,24 @@ button {
 }
 .uni-menu__link { padding: 16px clamp(20px, 5vw, 64px); font-family: var(--font-body); font-size: 17px; color: var(--uni-900); text-decoration: none; display: block; }
 .uni-menu__link:hover { background: var(--uni-50); }
-@media (max-width: 1000px) {
+.uni-menu__cta { display: none; gap: 10px; padding: 12px clamp(20px, 5vw, 64px) 16px; }
+.uni-menu__cta .uni-header__pill { flex: 1; padding: 14px 18px; }
+
+/* Nav links plus two pills need room; below this the links move into the
+   burger menu and the bar keeps just logo + pills + burger. */
+@media (max-width: 1180px) {
   .uni-nav { display: none; }
-  .uni-burger { display: inline-flex; margin-left: auto; }
+  .uni-burger { display: inline-flex; }
+}
+/* Then the pills leave the bar too, and the menu takes over both. With the CTA
+   group gone, the burger needs the auto margin to stay flush right. */
+@media (max-width: 720px) {
+  .uni-header__cta { display: none; }
+  .uni-menu__cta { display: flex; }
+  .uni-burger { margin-left: auto; }
+}
+@media (max-width: 400px) {
+  .uni-menu__cta { flex-direction: column; }
 }
 
 /* ==========================================================================
