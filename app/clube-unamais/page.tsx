@@ -53,7 +53,7 @@ export default function ClubeUnamaisPage() {
 
       <section style={{ background: "var(--gradient-teal)", padding: "96px 0" }}>
         <Reveal as="div" style={{ maxWidth: 780, margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)", textAlign: "center" }}>
-          <h2 style={{ margin: 0, fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 44, lineHeight: 1.1, letterSpacing: "-0.02em", color: "#fff", textWrap: "pretty" }}>
+          <h2 className="uni-display" style={{ margin: 0, "--uni-display-size": "44px", fontFamily: "var(--font-display)", fontWeight: 700, lineHeight: 1.12, letterSpacing: "-0.02em", color: "#fff", textWrap: "pretty" } as React.CSSProperties}>
             Pronto para cuidar da família gastando menos?
           </h2>
           <p style={{ margin: "20px auto 0", fontFamily: "var(--font-body)", fontSize: 19, lineHeight: 1.75, color: "rgba(255,255,255,.8)", maxWidth: 560, textWrap: "pretty" }}>

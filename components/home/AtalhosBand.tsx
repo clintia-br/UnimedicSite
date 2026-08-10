@@ -40,7 +40,7 @@ export function AtalhosBand() {
   );
 
   return (
-    <section id="atalhos" ref={sectionRef} style={{ background: "var(--uni-700)", padding: "72px 0" }}>
+    <section id="atalhos" ref={sectionRef} style={{ background: "var(--uni-700)", padding: "clamp(40px, 5.2vw, 72px) 0" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
         <div className="uni-atalhos">
           {ATALHOS.map((a, i) => (
@@ -59,7 +59,7 @@ export function AtalhosBand() {
                   }}
                 />
               ) : null}
-              <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 30, letterSpacing: "-0.015em", color: "#fff" }}>
+              <div className="uni-title" style={{ fontFamily: "var(--font-display)", fontWeight: 700, letterSpacing: "-0.015em", color: "#fff" }}>
                 {a.title}
               </div>
               <p style={{ margin: "18px 0 0", fontFamily: "var(--font-body)", fontSize: 17, lineHeight: 1.65, color: "rgba(255,255,255,.82)", textWrap: "pretty", marginBottom: 28 }}>

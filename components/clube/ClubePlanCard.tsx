@@ -36,7 +36,7 @@ export function ClubePlanCard({ plano }: { plano: (typeof clubePlanos)[number] }
           Mais escolhido
         </span>
       ) : null}
-      <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 22, color: "var(--uni-900)" }}>{plano.name}</div>
+      <div className="uni-subtitle" style={{ "--uni-subtitle-size": "22px", fontFamily: "var(--font-display)", fontWeight: 700, color: "var(--uni-900)" } as React.CSSProperties}>{plano.name}</div>
       <div style={{ marginTop: 14, display: "flex", alignItems: "baseline", gap: 8 }}>
         <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 42, letterSpacing: "-0.02em", color: "var(--uni-700)" }}>
           {plano.price}

@@ -9,7 +9,7 @@ export function InfoAccordion() {
   const [open, setOpen] = useState<number | null>(null);
   return (
     <div>
-      <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 30, letterSpacing: "-0.015em", color: "var(--uni-900)" }}>
+      <div className="uni-title" style={{ fontFamily: "var(--font-display)", fontWeight: 700, letterSpacing: "-0.015em", color: "var(--uni-900)" }}>
         Sobre o atendimento
       </div>
       <div style={{ marginTop: 24 }}>

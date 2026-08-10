@@ -58,10 +58,10 @@ export function EspecialidadesBand() {
           {especialidades.map((e) => (
             <div key={e.slug} className="uni-esp-card">
               <div
+                className="uni-subtitle"
                 style={{
                   fontFamily: "var(--font-display)",
                   fontWeight: 700,
-                  fontSize: 24,
                   lineHeight: 1.25,
                   letterSpacing: "-0.015em",
                   color: "var(--uni-900)",

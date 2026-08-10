@@ -30,7 +30,7 @@ export default function EspecialidadesIndexPage() {
         <Reveal as="div" group y={26} className="uni-esp-index">
           {especialidades.map((e) => (
             <Link key={e.slug} href={`/especialidades/${e.slug}`} className="uni-esp-index-card">
-              <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 22, lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--uni-900)", textWrap: "pretty" }}>
+              <span className="uni-subtitle" style={{ "--uni-subtitle-size": "22px", fontFamily: "var(--font-display)", fontWeight: 700, lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--uni-900)", textWrap: "pretty" } as React.CSSProperties}>
                 {e.name}
               </span>
               <span style={{ marginTop: 12, fontFamily: "var(--font-body)", fontSize: 15, lineHeight: 1.7, color: "var(--text-body)", textWrap: "pretty" }}>

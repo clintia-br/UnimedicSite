@@ -17,7 +17,10 @@ export function BlogBand() {
       <Reveal as="div" group y={26} className="uni-trio" style={{ marginTop: 36 }}>
         {[1, 2, 3].map((i) => (
           <Card key={i} padding={0}>
-            <PhotoSlot height={180} label="Imagem do artigo" style={{ borderRadius: 0, border: "none", background: "var(--uni-50)" }} />
+            {/* Shorter on a phone: three stacked placeholder cards were eating
+                roughly a screen and a half of scroll for content that is not
+                written yet. */}
+            <PhotoSlot height="clamp(112px, 22vw, 180px)" label="Imagem do artigo" style={{ borderRadius: 0, border: "none", background: "var(--uni-50)" }} />
             <div style={{ padding: 24 }}>
               <div style={{ fontFamily: "var(--font-body)", fontSize: 12, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--uni-600)" }}>
                 A preencher

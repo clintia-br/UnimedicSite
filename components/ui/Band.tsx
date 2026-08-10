@@ -13,14 +13,18 @@ type BandProps = {
 /** Full-bleed band. Unimedic rhythm is roomier than the base system: 136px. */
 export function Band({ tone = "white", children, py = 136, narrow, id, className, style }: BandProps) {
   const bg = { white: "#fff", tint: "var(--uni-50)", mint: "var(--uni-100)", dark: "var(--gradient-teal)" }[tone];
+  /* The desktop rhythm is deliberately roomy, but held at 64px on a phone it
+     turned into 128px of dead space between every band — the page ran to ten
+     screens. The floor drops; the desktop figure is untouched. */
+  const pad = `clamp(46px, ${py / 14}vw, ${py}px)`;
   return (
     <section
       id={id}
       className={`uni-band ${className ?? ""}`}
       style={{
         background: bg,
-        paddingTop: `clamp(64px, ${py / 14}vw, ${py}px)`,
-        paddingBottom: `clamp(64px, ${py / 14}vw, ${py}px)`,
+        paddingTop: pad,
+        paddingBottom: pad,
         ...style,
       }}
     >
@@ -46,10 +50,12 @@ export function Display({ children, tone = "ink", size = 56, align = "left", as 
     <Tag
       className={`uni-display ${className ?? ""}`}
       style={{
+        /* Read by --fs-display as the upper bound; the fluid scale handles
+           everything below it. */
         "--uni-display-size": `${size}px`,
         fontFamily: "var(--font-display)",
         fontWeight: 700,
-        lineHeight: 1.1,
+        lineHeight: 1.12,
         letterSpacing: "-0.02em",
         textAlign: align,
         color: tone === "onDark" ? "#fff" : "var(--uni-900)",
@@ -77,18 +83,19 @@ type LedeProps = {
 export function Lede({ children, tone = "ink", size = 19, align = "left", maxWidth = 720, style, className }: LedeProps) {
   return (
     <p
-      className={className}
+      className={`uni-lede ${className ?? ""}`}
       style={{
+        /* Upper bound for --fs-lede; on a phone it scales down so the gap to
+           the heading above stays legible instead of both meeting near 28px. */
+        "--uni-lede-size": `${size}px`,
         fontFamily: "var(--font-body)",
-        fontSize: size,
-        lineHeight: 1.75,
         textAlign: align,
         color: tone === "onDark" ? "rgba(255,255,255,.78)" : "var(--text-body)",
         maxWidth,
         margin: 0,
         textWrap: "pretty",
         ...style,
-      }}
+      } as CSSProperties}
     >
       {children}
     </p>
