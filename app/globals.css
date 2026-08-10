@@ -62,6 +62,21 @@
   --eyebrow-tracking: 0.14em;
   --label-weight: 700;
 
+  /* ---- Fluid type scale ----
+     The desktop sizes come from the design system; these keep the *ratios*
+     intact on a phone. Without them every heading bottoms out at its floor
+     while body copy stays at its desktop size, which flattens the hierarchy —
+     at 390px the section headings were landing smaller than the card titles
+     sitting inside them. Each step keeps a real gap from the one below. */
+  --fs-hero: clamp(32px, 5.2vw, 46px);
+  --fs-display: clamp(30px, 4.6vw, var(--uni-display-size, 50px));
+  --fs-title: clamp(21px, 5.2vw, var(--uni-title-size, 30px));
+  --fs-subtitle: clamp(18px, 4.4vw, var(--uni-subtitle-size, 24px));
+  --fs-lede: clamp(16px, 3.3vw, var(--uni-lede-size, 19px));
+  --fs-body: clamp(15px, 3.2vw, 16px);
+  /* Long measures need air; a narrow column does not. */
+  --lh-lede: clamp(1.55, 1.4 + 0.5vw, 1.75);
+
   /* ---- Shadows ---- */
   --shadow-card: 0 1px 2px rgba(8, 56, 48, 0.04), 0 10px 30px rgba(8, 56, 48, 0.06);
   --shadow-card-hover: 0 2px 6px rgba(8, 56, 48, 0.07), 0 20px 46px rgba(8, 56, 48, 0.11);
@@ -309,6 +324,13 @@ button {
   transition: background var(--dur-base) var(--ease-standard), box-shadow var(--dur-base) var(--ease-standard);
 }
 .uni-header__logo { flex: 0 0 auto; display: flex; }
+.uni-header__logo img { height: 42px; width: auto; }
+/* 96px is a ninth of a phone screen and the bar carries only logo + burger
+   there, so it tightens up. */
+@media (max-width: 720px) {
+  .uni-header { height: 72px; }
+  .uni-header__logo img { height: 32px; }
+}
 
 .uni-nav { display: flex; align-items: center; gap: clamp(14px, 1.8vw, 30px); flex: 0 1 auto; }
 .uni-nav .bd-navlink { font-size: clamp(14px, 1.4vw, 16px); }
@@ -427,8 +449,13 @@ button {
   .uni-hero__photo::after { background: linear-gradient(180deg, rgba(8, 56, 48, 0.35) 0%, rgba(8, 56, 48, 0.85) 100%); }
   .uni-hero__copy { max-width: none; padding: 36px 0 44px; }
 }
-.uni-h1 { font-size: clamp(26px, 2.9vw, 46px); }
-.uni-display { font-size: clamp(28px, 3.6vw, var(--uni-display-size, 50px)); }
+.uni-h1 { font-size: var(--fs-hero); }
+.uni-display { font-size: var(--fs-display); }
+.uni-lede { font-size: var(--fs-lede); line-height: var(--lh-lede); }
+/* Card and band titles — one step below .uni-display so a card inside a
+   section can never out-shout the section's own heading. */
+.uni-title { font-size: var(--fs-title); }
+.uni-subtitle { font-size: var(--fs-subtitle); }
 
 
 /* ==========================================================================
@@ -461,7 +488,9 @@ button {
 .uni-btn-solid:hover { background: var(--uni-800); }
 .uni-btn-ghost { display: flex; align-items: center; justify-content: center; padding: 13px 20px; border-radius: 999px; background: #fff; border: 1.5px solid var(--uni-300); color: var(--uni-800); font-family: var(--font-display); font-weight: 600; font-size: 16px; text-decoration: none; transition: var(--transition-base); }
 .uni-btn-ghost:hover { background: var(--uni-50); }
-@media (max-width: 640px) { .uni-esp-card { flex: 0 0 82%; } }
+/* The 280px floor exists to keep a 3-up row even on desktop; on a phone the
+   cards are one-up and it just opens a void under the title. */
+@media (max-width: 640px) { .uni-esp-card { flex: 0 0 82%; min-height: 0; padding: 24px; } }
 
 /* ==========================================================================
    Atalhos band
@@ -470,7 +499,14 @@ button {
 .uni-atalho { display: flex; flex-direction: column; padding: 0 56px; }
 .uni-atalho:first-child { padding-left: 0; }
 .uni-atalho:last-child { padding-right: 0; }
-@media (max-width: 900px) { .uni-atalhos { grid-template-columns: 1fr; gap: 44px; } .uni-atalho { padding: 0; border-left: 0; } }
+@media (max-width: 900px) {
+  .uni-atalhos { grid-template-columns: 1fr; gap: 36px; }
+  .uni-atalho { padding: 0; border-left: 0; }
+  /* Stacked, the column rules become stray vertical lines beside each item;
+     a horizontal divider is what separates them here. */
+  .uni-atalho-line { display: none; }
+  .uni-atalho + .uni-atalho { border-top: 1px solid rgba(255, 255, 255, 0.18); padding-top: 36px; }
+}
 
 /* ==========================================================================
    Accordion (custom, GSAP-driven)

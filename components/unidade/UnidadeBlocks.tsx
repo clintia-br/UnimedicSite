@@ -1,13 +1,22 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState, type CSSProperties, type ReactNode } from "react";
 import { Icon } from "@/components/ui/Icon";
 import { Collapsible } from "@/components/ui/Collapsible";
 import { ENDERECO, HORARIOS, MAPS_Q, SERVICOS_UNIDADE } from "@/lib/constants";
 
 export function SecTitle({ children, size = 26 }: { children: ReactNode; size?: number }) {
   return (
-    <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: size, letterSpacing: "-0.015em", color: "var(--uni-900)" }}>
+    <div
+      className="uni-subtitle"
+      style={{
+        "--uni-subtitle-size": `${size}px`,
+        fontFamily: "var(--font-display)",
+        fontWeight: 700,
+        letterSpacing: "-0.015em",
+        color: "var(--uni-900)",
+      } as CSSProperties}
+    >
       {children}
     </div>
   );
