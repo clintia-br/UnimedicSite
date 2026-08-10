@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
-import { HeroPhotoNotice } from "@/components/ui/HeroPhotoNotice";
 import { CLUBE_URL, WA } from "@/lib/constants";
 
 export function ClubeHero() {
@@ -25,9 +25,18 @@ export function ClubeHero() {
 
   return (
     <section ref={ref} style={{ position: "relative", minHeight: 540, overflow: "hidden", background: "var(--uni-900)" }}>
-      <div className="uni-clube__photo" style={{ position: "absolute", inset: 0, background: "var(--gradient-teal)" }}>
-        <HeroPhotoNotice label="fachada da Unimedic" />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(4,41,31,.35) 0%, rgba(4,41,31,.6) 100%)" }} />
+      <div className="uni-clube__photo" style={{ position: "absolute", inset: 0 }}>
+        <Image
+          src="/assets/unimedic/fotos/entrada.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover", objectPosition: "center" }}
+        />
+        {/* Centred copy sits over the whole frame here, so the wash is heavier
+            than on the other heroes. */}
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(4,41,31,.74) 0%, rgba(4,41,31,.88) 100%)" }} />
       </div>
       <div style={{ position: "relative", maxWidth: 980, margin: "0 auto", padding: "clamp(64px, 10vw, 104px) clamp(20px, 5vw, 40px) clamp(56px, 8vw, 88px)", textAlign: "center" }}>
         <div

@@ -1,10 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
-import { PhotoSlot } from "@/components/ui/PhotoSlot";
 
 /** Split hero: solid brand panel left, full-bleed photo right, diagonal seam. */
 export function Hero() {
@@ -30,11 +30,14 @@ export function Hero() {
       style={{ position: "relative", background: "var(--uni-900)", overflow: "hidden" }}
     >
       <div className="uni-hero__photo">
-        <PhotoSlot
-          label="Recepção da Unimedic em Unamar"
-          height="100%"
-          tone="dark"
-          style={{ width: "100%", borderRadius: 0, border: "none" }}
+        {/* object-position is tuned in CSS: the frame is very wide and the
+            interesting half sits right of centre. */}
+        <Image
+          src="/assets/unimedic/fotos/recepcao.jpg"
+          alt="Recepção da Unimedic em Unamar"
+          fill
+          priority
+          sizes="(max-width: 760px) 100vw, 56vw"
         />
       </div>
       <div className="uni-hero__inner">

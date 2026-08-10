@@ -61,18 +61,35 @@ animações seguem essa regra: fades e deslocamentos pequenos, com `power2/power
 
 ## Fotos
 
-As fotos do ensaio não vieram no pacote. Onde elas entram, o site mostra um
-marcador explícito (`PhotoSlot` / `HeroPhotoNotice`) em vez de imagem de banco.
-Os pontos que esperam foto:
+Os três heroes usam fotos do ensaio, servidas por `next/image`:
 
-| Local | Foto |
-| --- | --- |
-| Hero da home | recepção |
-| Hero de "Onde estamos" | fachada com letreiro |
-| Hero do Unamais Vantagens | fachada |
-| Cards do blog | imagem do artigo |
+| Local | Arquivo | Original |
+| --- | --- | --- |
+| Hero da home | `fotos/recepcao.jpg` | `EspaçoSolar-38` |
+| Hero de "Onde estamos" | `fotos/fachada-letreiro.jpg` | `EspaçoSolar-36` |
+| Hero do Unamais Vantagens | `fotos/entrada.jpg` | `EspaçoSolar-31` |
 
-Salvar em no máximo ~2200px, JPEG, dentro de `public/assets/unimedic/fotos/`.
+Os originais têm 6240px e 0,6–3,4 MB cada. As versões servidas foram
+redimensionadas para 2400px de largura e reencodadas em JPEG progressivo
+(qualidade 82, mozjpeg), o que as deixa entre 184 e 269 KB. Para regerar depois
+de trocar uma foto, redimensione com os mesmos parâmetros antes de commitar —
+não sirva o arquivo de 6240px direto.
+
+Das 16 fotos do ensaio, apenas 5 são horizontais (31, 36, 38, 44, 46); as
+demais são retrato e não funcionam numa faixa de hero larga.
+
+**Os cards do blog seguem com placeholder de propósito**: os artigos em si não
+existem ainda ("Título do artigo", "Resumo em duas linhas"), e colocar foto real
+em conteúdo fictício faria o placeholder passar por publicado. Quando os artigos
+existirem, cada um entra com a sua própria imagem.
+
+Fotos ainda não usadas, disponíveis para novas seções: entrada em retrato (32,
+33), letreiro em retrato (34, 35), recepção e sala de espera em retrato (37,
+39–43, 45), porta de consultório (44) e corredor (46).
+
+Os 16 originais do ensaio ficam em `fotos-originais/` (26 MB). A pasta está fora
+de `public/`, então nada dali é servido — é só o acervo de onde as versões
+otimizadas são geradas.
 
 ## Pendências antes de publicar
 

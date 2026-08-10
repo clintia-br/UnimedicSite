@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { PageHero } from "@/components/ui/PageHero";
-import { HeroPhotoNotice } from "@/components/ui/HeroPhotoNotice";
 import { Band } from "@/components/ui/Band";
 import { Reveal } from "@/components/ui/Reveal";
 import { LocalizacaoBlock, HorariosBlock } from "@/components/unidade/UnidadeBlocks";
@@ -27,9 +27,28 @@ export default function OndeEstamosPage() {
         title="Unimedic Unamar"
         subtitle="Atendimento em Unamar, a poucos minutos de Tamoios e região."
         photo={
-          <div style={{ width: "100%", height: "100%", background: "var(--gradient-teal)" }}>
-            <HeroPhotoNotice label="fachada da Unimedic em Unamar" />
-          </div>
+          <>
+            <Image
+              src="/assets/unimedic/fotos/fachada-letreiro.jpg"
+              alt="Fachada da Unimedic em Unamar, com o letreiro da clínica"
+              fill
+              priority
+              sizes="100vw"
+              /* The band is much wider than the frame, so a centred crop slices
+                 straight through the sign. Bias upward to keep it whole. */
+              style={{ objectFit: "cover", objectPosition: "center 30%" }}
+            />
+            {/* Dark on the left so the headline keeps its contrast, clearing
+                toward the right where the sign is. */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(90deg, var(--uni-900) 0%, rgba(4,41,31,.88) 46%, rgba(4,41,31,.35) 100%)",
+              }}
+            />
+          </>
         }
       />
       <Band tone="white">
