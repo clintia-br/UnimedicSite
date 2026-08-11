@@ -68,7 +68,7 @@
      while body copy stays at its desktop size, which flattens the hierarchy —
      at 390px the section headings were landing smaller than the card titles
      sitting inside them. Each step keeps a real gap from the one below. */
-  --fs-hero: clamp(32px, 5.2vw, 46px);
+  --fs-hero: clamp(29px, 5.2vw, 46px);
   --fs-display: clamp(30px, 4.6vw, var(--uni-display-size, 50px));
   --fs-title: clamp(21px, 5.2vw, var(--uni-title-size, 30px));
   --fs-subtitle: clamp(18px, 4.4vw, var(--uni-subtitle-size, 24px));
@@ -443,49 +443,72 @@ button {
   .uni-hero__photo { width: 50%; clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%); }
   .uni-hero__copy { max-width: 460px; }
 }
-/* Brand panel behind the copy. Desktop keeps the vertical split, so it only
-   appears once the layout goes portrait. */
-.uni-hero__scrim { display: none; }
+/* Trust row closing the hero copy. On desktop it sits under the CTA inside the
+   brand panel; on mobile it becomes the card's footer. */
+.uni-hero__trust {
+  display: flex;
+  margin-top: 26px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+.uni-hero__trust > div {
+  flex: 1;
+  padding: 13px 6px 0;
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.72);
+  border-left: 1px solid rgba(255, 255, 255, 0.13);
+}
+.uni-hero__trust > div:first-child { border-left: 0; padding-left: 0; }
+.uni-hero__trust b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--uni-300);
+  margin-bottom: 2px;
+}
+
 @media (max-width: 760px) {
-  /* Same composition as desktop — photo, diagonal seam, copy over brand green —
-     turned through 90° so the seam runs across instead of down. A 52%-wide
-     text column would be unreadable at this width. */
+  /* Photo on top, copy in a card lifted over its lower edge. The card gives the
+     text its own surface, so legibility stops depending on what the photo
+     happens to be doing behind it — which is what the diagonal seam could not
+     guarantee. */
   .uni-hero {
     aspect-ratio: auto;
     max-height: none;
-    min-height: min(84vh, 620px);
-    display: flex;
-    align-items: flex-end;
+    min-height: 0;
+    display: block;
+    background: var(--uni-50) !important;
   }
   .uni-hero__photo {
-    position: absolute;
-    inset: 0;
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: clamp(232px, 52vw, 320px);
     clip-path: none;
   }
-  /* Keeps the top of the frame from washing out under the status bar. */
   .uni-hero__photo::after {
-    background: linear-gradient(180deg, rgba(8, 56, 48, 0.55) 0%, rgba(8, 56, 48, 0.15) 34%, rgba(8, 56, 48, 0) 55%);
+    background: linear-gradient(180deg, rgba(4, 32, 26, 0.32) 0%, rgba(4, 32, 26, 0.05) 58%);
   }
-  /* A 3:2 frame in a portrait box always shows its full height, so the panel
-     height is what decides how much of the room is visible — too tall and all
-     that is left above the seam is ceiling. */
-  .uni-hero__scrim {
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 56%;
+  .uni-hero__inner { position: relative; z-index: 1; padding-left: 16px; padding-right: 16px; }
+  .uni-hero__copy {
+    max-width: none;
+    margin-top: -58px;
+    margin-bottom: 26px;
     background: var(--uni-900);
-    /* Deep edge on the left, where the copy starts, rising to the right. The
-       other orientation left the first line of the headline sitting on the
-       photo, which is bright in places. */
-    clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 100%);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 16px 42px rgba(8, 56, 48, 0.24);
+    overflow: hidden;
   }
-  .uni-hero__inner { position: relative; z-index: 1; }
-  .uni-hero__copy { max-width: none; padding: 8px 0 40px; }
+  .uni-hero__body { padding: 26px 22px; }
+  /* Edge to edge inside the card, so it reads as the card's footer. */
+  .uni-hero__trust {
+    margin-top: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-top-color: rgba(255, 255, 255, 0.14);
+  }
+  .uni-hero__trust > div { padding: 13px 6px; text-align: center; }
+  .uni-hero__trust > div:first-child { padding-left: 6px; }
 }
 .uni-h1 { font-size: var(--fs-hero); }
 .uni-display { font-size: var(--fs-display); }

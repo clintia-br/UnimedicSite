@@ -5,8 +5,15 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { heroTrust } from "@/lib/data";
 
-/** Split hero: solid brand panel left, full-bleed photo right, diagonal seam. */
+/**
+ * Desktop keeps the brand's split banner: brand panel left, photo right,
+ * diagonal seam between. On a phone the same parts recompose as a photo with
+ * the copy in a card lifted over its lower edge — a 52%-wide text column is
+ * not readable at 390px, and the earlier stacked version read as two unrelated
+ * blocks. The trust row closes the card in both layouts.
+ */
 export function Hero() {
   const rootRef = useRef<HTMLElement>(null);
 
@@ -15,9 +22,11 @@ export function Hero() {
       const q = gsap.utils.selector(rootRef);
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.fromTo(q(".uni-hero__photo"), { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 1.3, ease: "power2.out" })
-        .fromTo(q(".uni-h1-line"), { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.12 }, 0.15)
-        .fromTo(q(".uni-hero__sub"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.7 }, 0.55)
-        .fromTo(q(".uni-hero__cta"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.7 }, 0.68);
+        .fromTo(q(".uni-hero__copy"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.9 }, 0.1)
+        .fromTo(q(".uni-h1-line"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.75, stagger: 0.1 }, 0.22)
+        .fromTo(q(".uni-hero__sub"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.65 }, 0.5)
+        .fromTo(q(".uni-hero__cta"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.65 }, 0.6)
+        .fromTo(q(".uni-hero__trust > *"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.08 }, 0.72);
     },
     { scope: rootRef }
   );
@@ -40,38 +49,43 @@ export function Hero() {
           sizes="(max-width: 760px) 100vw, 56vw"
         />
       </div>
-      {/* Portrait counterpart of the desktop seam. On a phone the photo fills
-          the whole band and this brand panel slides under the copy with the
-          same diagonal edge, instead of the photo and the copy sitting in two
-          separate stacked blocks. */}
-      <div className="uni-hero__scrim" aria-hidden="true" />
       <div className="uni-hero__inner">
         <div className="uni-hero__copy">
-          <h1
-            className="uni-h1"
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 700,
-              lineHeight: 1.1,
-              letterSpacing: "-0.025em",
-              color: "#fff",
-              margin: 0,
-              textWrap: "pretty",
-            }}
-          >
-            <span className="uni-h1-line" style={{ display: "block" }}>Você não precisa esperar meses</span>
-            <span className="uni-h1-line" style={{ display: "block" }}>
-              para cuidar da <span style={{ color: "var(--uni-400)" }}>saúde de quem ama</span>.
-            </span>
-          </h1>
-          <p
-            className="uni-hero__sub"
-            style={{ marginTop: 16, fontFamily: "var(--font-body)", fontSize: 18, lineHeight: 1.6, color: "rgba(255,255,255,.8)", maxWidth: 460, textWrap: "pretty" }}
-          >
-            Especialistas em Unamar, sem depender de plano de saúde.
-          </p>
-          <div className="uni-hero__cta" style={{ marginTop: 28 }}>
-            <WhatsAppButton variant="onTeal" />
+          <div className="uni-hero__body">
+            <h1
+              className="uni-h1"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 700,
+                lineHeight: 1.13,
+                letterSpacing: "-0.025em",
+                color: "#fff",
+                margin: 0,
+                textWrap: "pretty",
+              }}
+            >
+              <span className="uni-h1-line" style={{ display: "block" }}>Você não precisa esperar meses</span>
+              <span className="uni-h1-line" style={{ display: "block" }}>
+                para cuidar da <span style={{ color: "var(--uni-400)" }}>saúde de quem ama</span>.
+              </span>
+            </h1>
+            <p
+              className="uni-hero__sub"
+              style={{ marginTop: 14, fontFamily: "var(--font-body)", fontSize: "var(--fs-lede)", lineHeight: 1.55, color: "rgba(255,255,255,.82)", maxWidth: 460, textWrap: "pretty" }}
+            >
+              Especialistas em Unamar, sem depender de plano de saúde.
+            </p>
+            <div className="uni-hero__cta" style={{ marginTop: 22 }}>
+              <WhatsAppButton variant="onTeal" />
+            </div>
+          </div>
+          <div className="uni-hero__trust">
+            {heroTrust.map((t) => (
+              <div key={t.titulo}>
+                <b>{t.titulo}</b>
+                {t.detalhe}
+              </div>
+            ))}
           </div>
         </div>
       </div>
