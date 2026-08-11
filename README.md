@@ -78,10 +78,15 @@ não sirva o arquivo de 6240px direto.
 Das 16 fotos do ensaio, apenas 5 são horizontais (31, 36, 38, 44, 46); as
 demais são retrato e não funcionam numa faixa de hero larga.
 
-**Os cards do blog seguem com placeholder de propósito**: os artigos em si não
-existem ainda ("Título do artigo", "Resumo em duas linhas"), e colocar foto real
-em conteúdo fictício faria o placeholder passar por publicado. Quando os artigos
-existirem, cada um entra com a sua própria imagem.
+**Os três artigos do blog são fictícios** (`artigos` em `lib/data.ts`), pedidos
+só para a seção não ficar com "a preencher". Trocar por conteúdo real antes de
+publicar. Eles são deliberadamente sem autor, CRM ou data — atribuir texto
+fictício a um profissional identificado é o que o CFM veda — e o texto é
+genérico, remetendo à equipe em vez de dar orientação clínica. Os cards não são
+clicáveis, porque não existem páginas de artigo.
+
+As imagens dos artigos saem de `fotos/artigos/`, recortadas em 900×600 a partir
+de fotos do ensaio ainda não usadas em outras seções.
 
 Fotos ainda não usadas, disponíveis para novas seções: entrada em retrato (32,
 33), letreiro em retrato (34, 35), recepção e sala de espera em retrato (37,
@@ -102,6 +107,7 @@ otimizadas são geradas.
 4. **Meta Pixel** — o `pixel-unimedic.js` original (com as proteções para site de
    saúde) ainda não foi portado; ver o pacote de origem antes de reativar.
 5. **Acordeões das páginas de especialidade** — ainda com "Conteúdo a preencher".
+6. **Artigos do blog** — os três atuais são fictícios; ver a seção Fotos acima.
 
 Os dados estruturados (`MedicalClinic` JSON-LD) já estão portados em
 `lib/structured-data.ts` e injetados na home — falta apenas o campo `url` quando
