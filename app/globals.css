@@ -443,11 +443,49 @@ button {
   .uni-hero__photo { width: 50%; clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%); }
   .uni-hero__copy { max-width: 460px; }
 }
+/* Brand panel behind the copy. Desktop keeps the vertical split, so it only
+   appears once the layout goes portrait. */
+.uni-hero__scrim { display: none; }
 @media (max-width: 760px) {
-  .uni-hero { aspect-ratio: auto; max-height: none; display: block; min-height: 0; }
-  .uni-hero__photo { position: relative; width: 100%; height: 240px; clip-path: none; }
-  .uni-hero__photo::after { background: linear-gradient(180deg, rgba(8, 56, 48, 0.35) 0%, rgba(8, 56, 48, 0.85) 100%); }
-  .uni-hero__copy { max-width: none; padding: 36px 0 44px; }
+  /* Same composition as desktop — photo, diagonal seam, copy over brand green —
+     turned through 90° so the seam runs across instead of down. A 52%-wide
+     text column would be unreadable at this width. */
+  .uni-hero {
+    aspect-ratio: auto;
+    max-height: none;
+    min-height: min(84vh, 620px);
+    display: flex;
+    align-items: flex-end;
+  }
+  .uni-hero__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: none;
+  }
+  /* Keeps the top of the frame from washing out under the status bar. */
+  .uni-hero__photo::after {
+    background: linear-gradient(180deg, rgba(8, 56, 48, 0.55) 0%, rgba(8, 56, 48, 0.15) 34%, rgba(8, 56, 48, 0) 55%);
+  }
+  /* A 3:2 frame in a portrait box always shows its full height, so the panel
+     height is what decides how much of the room is visible — too tall and all
+     that is left above the seam is ceiling. */
+  .uni-hero__scrim {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 56%;
+    background: var(--uni-900);
+    /* Deep edge on the left, where the copy starts, rising to the right. The
+       other orientation left the first line of the headline sitting on the
+       photo, which is bright in places. */
+    clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 100%);
+  }
+  .uni-hero__inner { position: relative; z-index: 1; }
+  .uni-hero__copy { max-width: none; padding: 8px 0 40px; }
 }
 .uni-h1 { font-size: var(--fs-hero); }
 .uni-display { font-size: var(--fs-display); }
@@ -477,7 +515,11 @@ button {
 /* ==========================================================================
    Specialty carousel
    ========================================================================== */
+/* Touch widths get the swipe gesture and a peeking next card as the
+   affordance; the arrows would only cover the cards' own buttons. Desktop has
+   no swipe, so they stay — beside the heading, clear of the cards. */
 .uni-carousel-nav { display: flex; gap: 12px; }
+@media (max-width: 900px) { .uni-carousel-nav { display: none; } }
 .uni-arrow { display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 999px; background: #fff; border: 1px solid var(--uni-200); color: var(--uni-800); cursor: pointer; transition: var(--transition-base); }
 .uni-arrow:hover { background: var(--uni-100); }
 .uni-carousel { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: none; }

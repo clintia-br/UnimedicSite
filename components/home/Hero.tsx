@@ -40,6 +40,11 @@ export function Hero() {
           sizes="(max-width: 760px) 100vw, 56vw"
         />
       </div>
+      {/* Portrait counterpart of the desktop seam. On a phone the photo fills
+          the whole band and this brand panel slides under the copy with the
+          same diagonal edge, instead of the photo and the copy sitting in two
+          separate stacked blocks. */}
+      <div className="uni-hero__scrim" aria-hidden="true" />
       <div className="uni-hero__inner">
         <div className="uni-hero__copy">
           <h1

@@ -81,6 +81,41 @@ export const clubePlanos = [
   { name: "Premium", price: "R$ 99,90", popular: false, lines: ["Telemedicina 24h: clínico geral e especialidades", "Assistência PET, residencial e veicular 24h", "1 consulta gratuita por ano", "Até 50% off em exames", "Até 40% off em consultas com especialistas", "Clube de Parcerias + Assistência Plus inclusos"] },
 ];
 
+/* PLACEHOLDER — conteúdo fictício, pedido só para a seção não ficar vazia.
+   Trocar por artigos reais antes de publicar.
+
+   Deliberadamente sem autor, CRM ou data: atribuir texto fictício a um
+   profissional identificado é exatamente o que o CFM veda. O texto também é
+   genérico de propósito — nada aqui deve ser lido como orientação clínica, e
+   toda recomendação remete à equipe. Os cards não são clicáveis, porque não
+   existem páginas de artigo para abrir. */
+export const artigos = [
+  {
+    slug: "consulta-de-rotina",
+    categoria: "Prevenção",
+    titulo: "Consulta de rotina: por que não deixar para depois",
+    resumo:
+      "Acompanhar a saúde com regularidade ajuda a identificar mudanças cedo e a manter o cuidado em dia.",
+    imagem: "/assets/unimedic/fotos/artigos/consultorio.jpg",
+  },
+  {
+    slug: "preparo-exames",
+    categoria: "Exames",
+    titulo: "Como se preparar para um exame laboratorial",
+    resumo:
+      "Cada exame tem suas orientações de preparo. Nossa equipe informa o que se aplica ao seu caso no agendamento.",
+    imagem: "/assets/unimedic/fotos/artigos/sala-espera.jpg",
+  },
+  {
+    slug: "quando-procurar-especialista",
+    categoria: "Orientação",
+    titulo: "Quando procurar um especialista",
+    resumo:
+      "Na dúvida entre clínico geral e especialista, converse com a equipe: ela ajuda a direcionar o atendimento.",
+    imagem: "/assets/unimedic/fotos/artigos/corredor.jpg",
+  },
+];
+
 export const infoAtendimentoItems = [
   { icon: "file-text" as const, title: "Como se preparar", sub: "Entenda as informações de preparo com antecedência" },
   { icon: "droplet" as const, title: "Jejum", sub: "Confira a necessidade de jejum prévio e restrições de alimentos ou água" },
