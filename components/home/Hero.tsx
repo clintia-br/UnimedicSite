@@ -66,8 +66,11 @@ export function Hero() {
               }}
             >
               <span className="uni-h1-line" style={{ display: "block" }}>Você não precisa esperar meses</span>
+              <span className="uni-h1-line" style={{ display: "block" }}>para cuidar da</span>
+              {/* Own line so the accent phrase always starts one, instead of
+                  being split across the wrap as "saúde de / quem ama". */}
               <span className="uni-h1-line" style={{ display: "block" }}>
-                para cuidar da <span style={{ color: "var(--uni-400)" }}>saúde de quem ama</span>.
+                <span style={{ color: "var(--uni-400)" }}>saúde de quem ama</span>.
               </span>
             </h1>
             <p
