@@ -104,6 +104,18 @@
   --hover-lift: translateY(-2px);
   --press-scale: 0.98;
 
+  /* ---- Partner palette ----
+     Sampled from the Unamais mark itself (navy #002050, petrol #0080a0), not
+     derived from the Unimedic ramp. It exists so the club's block reads as the
+     partner's territory and not as Unimedic's own claim. The link tone is
+     darkened from the sampled petrol, which only reached 4.04:1 on this
+     background; #00647d gives 5.95:1. */
+  --parceiro-bg: #e7f3f8;
+  --parceiro-borda: #cfe6ee;
+  --parceiro-titulo: #0a3f5c;
+  --parceiro-texto: #3d5f6e;
+  --parceiro-link: #00647d;
+
   /* ---- Rhythm ---- */
   --section-py: 136px;
 }
@@ -456,59 +468,56 @@ button {
   .uni-hero__photo { width: 50%; clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%); }
   .uni-hero__copy { max-width: 460px; }
 }
-/* Trust row closing the hero copy: a light panel inside the brand card, with
-   the partner lockup as its third cell.
+/* Partner call-out closing the hero copy.
 
    The width cap is load-bearing. The photo panel is clipped diagonally, so its
    left edge walks leftward as it descends — by the bottom of the band, where
-   this row sits, the photo starts at 44vw. A row as wide as the copy column
-   (578px at 1440) ran 109px past the seam and over the photo. 400px clears it
-   from 1024px to 1920px; the headline sits higher up, where the diagonal has
-   not encroached yet, so it keeps the full column. */
-.uni-hero__trust {
+   this block sits, the photo starts at 44vw. A block as wide as the copy column
+   (578px at 1440) ran past the seam and printed over the photo. 430px clears it
+   from 1024px through 1920px; the headline sits higher up, where the diagonal
+   has not encroached yet, so it keeps the full column. */
+.uni-hero__clube {
   display: flex;
-  align-items: stretch;
-  margin-top: 30px;
-  max-width: min(100%, 400px);
-  background: var(--uni-100);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-}
-/* All three cells share width and alignment. Left-aligned text beside a
-   centred logo read as two different systems, and the wider logo cell made the
-   text ones look padded out. */
-.uni-hero__trust > div {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 12px 10px;
-  font-family: var(--font-body);
-  font-size: 12px;
-  line-height: 1.4;
-  text-align: center;
-  color: var(--text-body);
-  border-left: 1px solid var(--uni-200);
+  gap: 16px;
+  margin-top: 30px;
+  max-width: min(100%, 430px);
+  padding: 14px 18px 14px 14px;
+  background: var(--parceiro-bg);
+  border: 1px solid var(--parceiro-borda);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: background var(--dur-base) var(--ease-standard), transform var(--dur-base) var(--ease-standard), box-shadow var(--dur-base) var(--ease-standard);
 }
-.uni-hero__trust > div:first-child { border-left: 0; }
-.uni-hero__trust b {
-  display: block;
+.uni-hero__clube:hover {
+  background: #f2f9fc;
+  transform: var(--hover-lift);
+  box-shadow: 0 10px 24px rgba(10, 63, 92, 0.14);
+}
+.uni-hero__clube:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0, 100, 125, 0.4); }
+.uni-hero__clube img { flex: 0 0 auto; height: 54px; width: auto; display: block; }
+.uni-hero__clube-texto { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.uni-hero__clube-texto .t {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 13px;
-  color: var(--uni-800);
-  margin-bottom: 2px;
+  font-size: 13.5px;
+  line-height: 1.3;
+  color: var(--parceiro-titulo);
 }
-.uni-hero__trust-logo {
-  gap: 5px;
-  font-size: 10.5px !important;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.uni-hero__clube-texto .d {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--parceiro-texto);
+  text-wrap: pretty;
+}
+.uni-hero__clube-texto .l {
+  margin-top: 3px;
+  font-family: var(--font-body);
   font-weight: 700;
-  color: var(--uni-700) !important;
+  font-size: 12px;
+  color: var(--parceiro-link);
 }
-.uni-hero__trust-logo img { display: block; height: 46px; width: auto; }
 
 @media (max-width: 760px) {
   /* Photo on top, copy in a card lifted over its lower edge. The card gives the
@@ -544,14 +553,17 @@ button {
   }
   .uni-hero__body { padding: 26px 22px; }
   /* Edge to edge inside the card, so it reads as the card's footer; no radius
-     of its own, and no width cap — there is no diagonal to clear here. */
-  .uni-hero__trust {
+     or border of its own, and no width cap — there is no diagonal to clear. */
+  .uni-hero__clube {
     margin-top: 0;
     max-width: none;
     border-radius: 0;
+    border: 0;
+    border-top: 1px solid var(--parceiro-borda);
+    padding: 14px 18px;
   }
-  .uni-hero__trust > div { padding: 12px 7px; text-align: center; }
-  .uni-hero__trust-logo img { height: 40px; }
+  .uni-hero__clube:hover { transform: none; box-shadow: none; }
+  .uni-hero__clube img { height: 48px; }
 }
 .uni-h1 { font-size: var(--fs-hero); }
 .uni-display { font-size: var(--fs-display); }

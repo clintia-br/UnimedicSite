@@ -5,7 +5,8 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
-import { heroTrust } from "@/lib/data";
+import Link from "next/link";
+import { clubeHero } from "@/lib/data";
 
 /**
  * Desktop keeps the brand's split banner: brand panel left, photo right,
@@ -26,7 +27,7 @@ export function Hero() {
         .fromTo(q(".uni-h1-line"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.75, stagger: 0.1 }, 0.22)
         .fromTo(q(".uni-hero__sub"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.65 }, 0.5)
         .fromTo(q(".uni-hero__cta"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.65 }, 0.6)
-        .fromTo(q(".uni-hero__trust > *"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.08 }, 0.72);
+        .fromTo(q(".uni-hero__clube"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.6 }, 0.72);
     },
     { scope: rootRef }
   );
@@ -79,29 +80,25 @@ export function Hero() {
               <WhatsAppButton variant="onTeal" />
             </div>
           </div>
-          <div className="uni-hero__trust">
-            {heroTrust.map((t) => (
-              <div key={t.titulo}>
-                <b>{t.titulo}</b>
-                {t.detalhe}
-              </div>
-            ))}
-            {/* Partner lockup. The label ships with the mark deliberately:
-                Unamais is a benefits club, not a health plan — the site carries
-                a legal notice saying so — and the bare mark a line under "sem
-                depender de plano de saúde" would read as a contradiction.
-                On this light panel the navy artwork needs no white plate. */}
-            <div className="uni-hero__trust-logo">
-              <Image
-                src="/assets/unamais/logo-unamais.png"
-                alt="Unamais Vantagens"
-                width={600}
-                height={564}
-                priority
-              />
-              Clube parceiro
-            </div>
-          </div>
+          {/* Partner call-out closing the hero. The panel carries the partner's
+              own blue rather than Unimedic green, which is what keeps the two
+              brands legible as separate — the point the footer's legal notice
+              makes in words. The whole panel is the link, so the tap target is
+              the block and not just the arrow. */}
+          <Link href="/clube-unamais" className="uni-hero__clube">
+            <Image
+              src="/assets/unamais/logo-unamais.png"
+              alt="Unamais Vantagens"
+              width={600}
+              height={564}
+              priority
+            />
+            <span className="uni-hero__clube-texto">
+              <span className="t">{clubeHero.titulo}</span>
+              <span className="d">{clubeHero.detalhe}</span>
+              <span className="l">{clubeHero.cta} →</span>
+            </span>
+          </Link>
         </div>
       </div>
     </section>
