@@ -21,13 +21,15 @@ export const especialidades: Especialidade[] = [
   { name: "Exames laboratoriais", slug: "exames-laboratoriais", info: "Coleta e realização de exames para apoiar o diagnóstico e o acompanhamento do seu tratamento." },
 ];
 
-/* Argumentos da hero. Ambos já afirmados pela copy do cliente noutros pontos
-   do site — nada aqui é alegação nova. A terceira célula da faixa é o selo do
-   clube parceiro, montado no componente. */
-export const heroTrust = [
-  { titulo: "Sem plano", detalhe: "Consulta particular" },
-  { titulo: "WhatsApp", detalhe: "Agenda rápida" },
-];
+/* Chamada do clube parceiro que fecha a hero. Os benefícios listados são os
+   mesmos da página do clube — nada aqui é alegação nova. "Parceiro" acompanha
+   a marca de propósito: Unamais é clube de benefícios, não plano de saúde, e o
+   rodapé do site carrega o aviso legal dizendo isso. */
+export const clubeHero = {
+  titulo: "Clube de benefícios parceiro",
+  detalhe: "Telemedicina 24h, consulta anual inclusa e descontos em exames.",
+  cta: "Conhecer o Unamais",
+};
 
 export const diferenciais = [
   { title: "Você agenda sem complicação.", body: "Nada de processos difíceis ou ligações intermináveis. Nossa equipe atende pelo WhatsApp e ajuda você a encontrar o melhor horário." },
