@@ -23,7 +23,8 @@ export function Hero() {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.fromTo(q(".uni-hero__photo"), { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 1.3, ease: "power2.out" })
         .fromTo(q(".uni-hero__copy"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.9 }, 0.1)
-        .fromTo(q(".uni-h1-line"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.75, stagger: 0.1 }, 0.22)
+        .fromTo(q(".uni-hero__selo"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.6 }, 0.18)
+        .fromTo(q(".uni-h1-line"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.75, stagger: 0.1 }, 0.28)
         .fromTo(q(".uni-hero__sub"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.65 }, 0.5)
         .fromTo(q(".uni-hero__cta"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.65 }, 0.6)
         .fromTo(q(".uni-hero__trust > *"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.08 }, 0.72);
@@ -52,6 +53,23 @@ export function Hero() {
       <div className="uni-hero__inner">
         <div className="uni-hero__copy">
           <div className="uni-hero__body">
+            {/* Partner lockup. The label is not decoration: Unamais is a
+                benefits club, not a health plan — the site carries a legal
+                notice saying so — and the bare mark next to "sem depender de
+                plano de saúde" would read as a contradiction. The white plate
+                is what keeps the navy artwork legible on the brand green. */}
+            <div className="uni-hero__selo">
+              <span>Clube parceiro</span>
+              <span className="uni-hero__selo-chip">
+                <Image
+                  src="/assets/unamais/logo-unamais.png"
+                  alt="Unamais Vantagens"
+                  width={600}
+                  height={564}
+                  priority
+                />
+              </span>
+            </div>
             <h1
               className="uni-h1"
               style={{
