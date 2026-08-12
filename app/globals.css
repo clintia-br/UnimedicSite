@@ -416,7 +416,20 @@ button {
 /* ==========================================================================
    Hero
    ========================================================================== */
-.uni-hero { position: relative; width: 100%; max-width: 100%; aspect-ratio: 1920 / 600; min-height: 420px; max-height: 660px; display: flex; align-items: center; }
+/* The banner proportion is a floor, not a fixed height. With aspect-ratio the
+   box could not grow, so once the trust row was added the copy outgrew it and
+   overflow:hidden cut the headline and the row off below ~1300px. 31.25vw is
+   the same 1920/600 ratio; min-height keeps it when the copy is short and lets
+   the band grow when it is not. */
+.uni-hero {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-height: clamp(420px, 31.25vw, 660px);
+  padding: 28px 0;
+  display: flex;
+  align-items: center;
+}
 .uni-hero__photo {
   position: absolute; top: 0; right: 0; bottom: 0; width: 56%;
   clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%);
@@ -478,6 +491,7 @@ button {
     aspect-ratio: auto;
     max-height: none;
     min-height: 0;
+    padding: 0;
     display: block;
     background: var(--uni-50) !important;
   }
