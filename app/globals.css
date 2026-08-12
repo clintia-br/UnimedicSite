@@ -456,68 +456,59 @@ button {
   .uni-hero__photo { width: 50%; clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%); }
   .uni-hero__copy { max-width: 460px; }
 }
-/* Partner lockup above the headline, same position in both layouts. */
-.uni-hero__selo {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 20px;
-}
-.uni-hero__selo > span:first-child {
-  font-family: var(--font-body);
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--uni-300);
-}
-/* The mark is navy and teal, which disappears against the brand green. The
-   plate is what makes it legible — swap it for a negative version of the logo
-   if Unamais supplies one. */
-.uni-hero__selo-chip {
-  display: inline-flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 10px;
-  padding: 7px 11px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
-}
-.uni-hero__selo-chip img {
-  display: block;
-  height: 46px;
-  width: auto;
-}
-@media (max-width: 760px) {
-  .uni-hero__selo { gap: 11px; margin-bottom: 16px; }
-  .uni-hero__selo-chip { padding: 6px 9px; }
-  .uni-hero__selo-chip img { height: 38px; }
-}
+/* Trust row closing the hero copy: a light panel inside the brand card, with
+   the partner lockup as its third cell.
 
-/* Trust row closing the hero copy. On desktop it sits under the CTA inside the
-   brand panel; on mobile it becomes the card's footer. */
+   The width cap is load-bearing. The photo panel is clipped diagonally, so its
+   left edge walks leftward as it descends — by the bottom of the band, where
+   this row sits, the photo starts at 44vw. A row as wide as the copy column
+   (578px at 1440) ran 109px past the seam and over the photo. 400px clears it
+   from 1024px to 1920px; the headline sits higher up, where the diagonal has
+   not encroached yet, so it keeps the full column. */
 .uni-hero__trust {
   display: flex;
-  margin-top: 26px;
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  align-items: stretch;
+  margin-top: 30px;
+  max-width: min(100%, 400px);
+  background: var(--uni-100);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 .uni-hero__trust > div {
   flex: 1;
-  padding: 13px 6px 0;
+  padding: 12px 12px;
   font-family: var(--font-body);
   font-size: 12px;
   line-height: 1.4;
-  color: rgba(255, 255, 255, 0.72);
-  border-left: 1px solid rgba(255, 255, 255, 0.13);
+  color: var(--text-body);
+  border-left: 1px solid var(--uni-200);
 }
-.uni-hero__trust > div:first-child { border-left: 0; padding-left: 0; }
+.uni-hero__trust > div:first-child { border-left: 0; }
 .uni-hero__trust b {
   display: block;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 13px;
-  color: var(--uni-300);
+  color: var(--uni-800);
   margin-bottom: 2px;
 }
+/* The mark is wider than it is tall once the label sits under it, so this cell
+   gets a little more room than the two text cells. */
+.uni-hero__trust-logo {
+  flex: 1.15 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  text-align: center;
+  font-size: 10.5px !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--uni-700) !important;
+}
+.uni-hero__trust-logo img { display: block; height: 46px; width: auto; }
 
 @media (max-width: 760px) {
   /* Photo on top, copy in a card lifted over its lower edge. The card gives the
@@ -552,14 +543,15 @@ button {
     overflow: hidden;
   }
   .uni-hero__body { padding: 26px 22px; }
-  /* Edge to edge inside the card, so it reads as the card's footer. */
+  /* Edge to edge inside the card, so it reads as the card's footer; no radius
+     of its own, and no width cap — there is no diagonal to clear here. */
   .uni-hero__trust {
     margin-top: 0;
-    background: rgba(255, 255, 255, 0.05);
-    border-top-color: rgba(255, 255, 255, 0.14);
+    max-width: none;
+    border-radius: 0;
   }
-  .uni-hero__trust > div { padding: 13px 6px; text-align: center; }
-  .uni-hero__trust > div:first-child { padding-left: 6px; }
+  .uni-hero__trust > div { padding: 12px 7px; text-align: center; }
+  .uni-hero__trust-logo img { height: 40px; }
 }
 .uni-h1 { font-size: var(--fs-hero); }
 .uni-display { font-size: var(--fs-display); }

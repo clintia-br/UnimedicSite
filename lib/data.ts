@@ -21,12 +21,12 @@ export const especialidades: Especialidade[] = [
   { name: "Exames laboratoriais", slug: "exames-laboratoriais", info: "Coleta e realização de exames para apoiar o diagnóstico e o acompanhamento do seu tratamento." },
 ];
 
-/* Os três argumentos da hero. Todos já afirmados pela copy do cliente noutros
-   pontos do site — nada aqui é alegação nova. */
+/* Argumentos da hero. Ambos já afirmados pela copy do cliente noutros pontos
+   do site — nada aqui é alegação nova. A terceira célula da faixa é o selo do
+   clube parceiro, montado no componente. */
 export const heroTrust = [
   { titulo: "Sem plano", detalhe: "Consulta particular" },
   { titulo: "WhatsApp", detalhe: "Agenda rápida" },
-  { titulo: "Unamar", detalhe: "Perto de casa" },
 ];
 
 export const diferenciais = [
